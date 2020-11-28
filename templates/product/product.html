@@ -1,0 +1,73 @@
+
+{% extends 'jobs/home.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<main role="main">
+  <div class="container-fluid">
+      <h1 class="text-center pt-3" style="font-weight :bold;" >
+        <u> Unnati's Project</u>
+      </h1>
+      <h2> Latest Posts</h2>
+      {% if request.user.is_authenticated %}
+              <a href="/createproduct"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+                 glyphicon-plus"></span></button></a>
+     {% endif %}
+        <hr/>
+
+
+        <div class="row" pt-3>
+        {% if products %}
+              {% for product in products %}
+                 <div class="col-md-4 ">
+                 <div class="card mb-4 ">
+                 <img src="{{ product.image.url }}" width="350" height="300 "/>
+                 <div class="card-body bg-dark" width="300">
+                   <p class="card-text text-light">{{product.title}} <p class="card-text text-light">Publish Time : {{product.publish_time}}</p>
+
+                   {% if request.user.is_authenticated %}
+                 <a href="/updateproduct/{{product.id}}"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+                    glyphicon-pencil"></span></button></a>
+                 <a href="" data-toggle="modal" data-target ="#ModalProject"><button type="button" name="button" class="btn btn-info"><span class="glyphicon
+                    glyphicon-trash"></span></button></a>
+
+                   {% endif %}
+                  </div>
+                 </div>
+                 </div>
+   <!-- -----------------------------------------------------------------------------------------#modal-------------------- -->
+                 <div class="modal" tableindex="-1" role ="dialog" id = "ModalProject">
+                   <div class="modal-dialog">
+                     <div class="modal-content panel-warning">
+                       <div class="modal-header panel-heading">
+                         <center>
+                         <h5 class="modal-title">Delete Confirmation</h5>
+
+
+                         </center>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+                       </div>
+                       <div class="modal-body ">
+                         <p>Are You Delete This Post?</p>
+                       </div>
+                       <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                         <a href="/deleteproduct/{{product.id}}"><button type="button" class="btn btn-danger">Delete</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 {% endfor %}
+
+
+        {% endif %}
+
+
+
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends 'jobs/home.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<main role="main">
+  <h1>Blog Details</h1>
+{% if blog_details %}
+
+  <div class="container">
+      <h1 class="text-center pt-3" >
+          {{blog_details.title|upper}}
+      </h1>
+      <p class="text-center">{{blog_details.pubdate}}</p>
+      <hr>
+      <img class="img-fluid" src="{{blog_details.image.url}}">
+      <br>
+      <p>{{blog_details.body}}</p>
+      <br>
+  {% else %}
+  No blogdetail Found
+  {% endif %}
+  </div>
+</main>
+
+{% endblock %}

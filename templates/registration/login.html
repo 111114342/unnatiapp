@@ -1,0 +1,32 @@
+{% extends 'jobs/home.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<style media="screen">
+
+
+  #login-btn{
+    margin-left: 80px;
+    margin-top: 5px;
+    padding-left:40px;
+    padding-right:40px;
+  }
+</style>
+<div class="container-fluid">
+
+   <div class="container card card-body bg-transparent col-lg-3">
+
+  <h1>Login as Admin</h1>
+    <form class="container form-group" method="post">
+    <table>
+      {{form.as_table}}
+      {% csrf_token %}
+    </table>
+    <button type="submit" name="button" class="btn btn-outline-success btn-lg" id="login-btn">Login</button>
+    </form>
+
+  </div>
+  </div>
+
+{% endblock %}

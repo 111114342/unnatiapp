@@ -1,0 +1,185 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Unnati Gupta</title>
+
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+      <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Unnati Gupta</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+    <div class="navbar-nav ml-auto" >
+      <a class="nav-link active" href=" https://twitter.com/UnnatiG34125168" style="margin-left:500px;padding-left:140px;">Twitter</a>
+      <a class="nav-link active" href=" https://www.instagram.com/___unn_ati_gupta___/" style="padding-left:10px;">Instagram</a>
+             <a class="nav-link active" href="/product"style="padding-left:10px;">Project</a>
+
+      <a class="nav-link active" href="{% static 'unnati gupta resume.pdf'%}"style="padding-left:10px;">Resume</a>
+      <a class="nav-link active" href="https://www.linkedin.com/in/unnati-gupta-a62563183/"style="padding-left:10px;">LinkendIn</a>
+      <a class="nav-link active" href="/blog"style="padding-left:10px;">Blog</a>
+
+          {% if not request.user.is_authenticated %}
+                <a class="nav-link active" href="/accounts/login"  style="font-size:15px;padding-left:40px;"><span class="glyphicon glyphicon-log-in">&nbsp;Login </span></a>
+          {% else %}
+                  <a href="">  <h4 style="color:white;margin-top: 5px;padding-left:15px;"><span class="glyphicon glyphicon-user">{{user.get_username}}</h4></li></a>
+
+          {% endif %}
+
+          {% if request.user.is_authenticated %}
+                <a class="nav-link active" href="/accounts/logout" style="padding-left:20px;"><span class="glyphicon glyphicon-log-out">Logout </span> </a>
+          {% endif %}
+
+    </div>
+  </div>
+</div>
+</nav>
+
+</header>
+                                      {% block body_block %}
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Hi! I am Unnati</h1>
+      <p class="lead text-muted" >Hyy! I am Unnati Gupta. I am from India.
+          I am pursuing B.TECH from Pranveer Singh Institute College of Engeenering (Kanpur) in Information Technology. I am IT 3rd year
+      student. As an IT 3rd year student, I have been learning computer language since 3years, so I am familiar with JAVA,C,Python,Web development
+      (HTML,CSS,Django),Android Development.</p>
+      <p>
+        <a class="btn btn-secondary my-2" href="mailto:unnatigupta527@gmail.com">Email Me</a>
+      </p>
+      <img src="{%static 'WhatsApp Image 2020-10-11 at 18.29.05.jpeg'%}" width="300" height="300"/>
+    </div>
+  </section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <h1 class="text-center" style="font-weight :bold;"><u>Achievements</u></h1>
+
+        {% if request.user.is_authenticated %}
+              <a href="/createachieve"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+                 glyphicon-plus"></span></button></a>
+
+        {% endif %}
+
+<div class="row" pt-3>
+
+{% if exps %}
+      {% for exp in exps %}
+         <div class="col-md-4 ">
+         <div class="card mb-4 ">
+         <img src="{{ exp.image.url }}" width="350" height="300 "/>
+         <div class="card-body bg-dark">
+           <p class="card-text text-light">{{exp.summary}}</p>
+           {% if request.user.is_authenticated %}
+
+           <a href="/updateachieve/{{exp.id}}"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+              glyphicon-pencil"></span></button></a>
+            <a href="" data-toggle="modal" data-target ="#Modalachieve"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+              glyphicon-trash"></span>
+</button></a>
+
+           {% endif %}
+
+           </div>
+         </div>
+         </div>
+<!--- #modal -->
+        <div class="modal" tableindex="-1" role ="dialog" id = "Modalachieve">
+           <div class="modal-dialog">
+             <div class="modal-content panel-warning">
+               <div class="modal-header panel-heading">
+                 <center>
+                 <h5 class="modal-title">Delete Confirmation</h5>
+
+
+                 </center>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <div class="modal-body ">
+                 <p>Are You Delete This Post?</p>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                 <a href="/deleteachieve/{{exp.id}}"><button type="button" class="btn btn-danger">Delete</button>
+               </div>
+             </div>
+           </div>
+         </div>
+
+
+         {% endfor %}
+
+{% else %}
+<h1>No Achievement</h1>
+{% endif %}
+
+
+        </div>
+      </div>
+  </div>
+
+</main>
+
+           {% endblock %}
+
+<footer class="text-muted">
+  <div class="container text-center" >
+      &copy; Unnati,{% now "Y" %}
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

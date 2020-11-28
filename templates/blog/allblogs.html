@@ -1,0 +1,82 @@
+
+{% extends 'jobs/home.html' %}
+{% load static %}
+
+{% block body_block %}
+
+
+<main role="main">
+
+  <div class="container-fluid">
+      <h1 class="text-center pt-3"style="font-weight :bold;" >
+        <u>  Unnati's Blog</u>
+      </h1>
+      <h2> Latest Posts</h2>
+      {% if request.user.is_authenticated %}
+            <a href="/createblog"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+               glyphicon-plus"></span></button></a>
+      {% endif %}
+
+
+      <hr/>
+                <h1>Blog Details</h1>
+                <div class="row" pt-3>
+                  {% if blogs %}
+                        {% for blog in blogs %}
+                           <div class="col-md-4 ">
+                           <div class="card mb-4 ">
+                           <img src="{{ blog.image.url }}" width="420" height="300 "/>
+                           <div class="card-body bg-dark" width="300">
+                             <p class="card-text text-light">{{blog.summary|truncatechars:35}}<a href="/blogdetail/{{blog.id}}">
+                               Read More..</a></p>
+                             <h5 style="color:white;">{{blog.post_time}}
+                             {% if request.user.is_authenticated %}
+                                   <a href="/updateblog/{{blog.id}}"><button type="button" class="btn btn-info"name="button"><span class="glyphicon
+                                      glyphicon-pencil"></span></button></a>
+                             <a href="" data-toggle="modal" data-target ="#Modalblog"><button type="button" name="button" class="btn btn-info"><span class="glyphicon
+                                glyphicon-trash"></span></button></a></<h5></h5>
+                             {% endif %}
+
+                             </div>
+                           </div>
+                           </div>
+
+
+
+
+<!--------------------------------------------------------- Modal------------------------------------------------------------------ -->
+<div class="modal" tableindex="-1" role ="dialog" id = "Modalblog">
+  <div class="modal-dialog">
+    <div class="modal-content panel-warning">
+      <div class="modal-header panel-heading">
+        <center>
+        <h5 class="modal-title">Delete Confirmation</h5>
+
+
+        </center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <p>Are You Delete This Post?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a href="/deleteblog/{{blog.id}}"><button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endfor %}
+
+{% else %}
+<h1>No Blogs</h1>
+{% endif %}
+</div>
+</main>
+{% endblock %}
