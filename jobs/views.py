@@ -32,9 +32,9 @@ class UpdateAchieve(UpdateView):
     template_name = 'jobs/updateachieve.html'
     def get_success_url(self):
         return reverse('achievement_page')
-def job_delete_view(request,id):
-    mydict = {'msg':'job Data Deleted'}
-    del_student = Job.objects.get(id=id)
-    del_student.delete()
-    del_student = Job.objects.all()
-    return HttpResponseRedirect('')
+class DeleteAchieve(DeleteView):
+    model = Job
+
+
+    def get_success_url(self):
+        return reverse('achievement_page')

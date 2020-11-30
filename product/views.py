@@ -29,9 +29,9 @@ class UpdateProduct(UpdateView):
     def get_success_url(self):
         return reverse('product_list_view')
 
-def product_delete_view(request,id):
-    mydict = {'msg':'Product Data Deleted'}
-    del_student = Product.objects.get(id=id)
-    del_student.delete()
-    del_student = Product.objects.all()
-    return HttpResponseRedirect("/product/")
+class DeleteProduct(DeleteView):
+    model = Product
+
+
+    def get_success_url(self):
+        return reverse('product_list_view')

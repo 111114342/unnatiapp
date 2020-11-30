@@ -23,7 +23,8 @@ urlpatterns = [
                   path('blogdetail/<int:pk>', views.BlogDetailView.as_view(), name='blog_detail_view'),
                   path('createblog/', views.CreateBlog.as_view()),
                   path('updateblog/<int:pk>', views.UpdateBlog.as_view()),
-                  path('deleteblog/<int:id>',views.blog_delete_view,name ='blogdelete'),
+                path('deleteblog/<int:pk>', views.DeleteBlog.as_view()),
+
 
 
 
@@ -31,7 +32,7 @@ urlpatterns = [
                   path('', jobs.views.JobHome.as_view(), name='achievement_page'),
                   path('createachieve/', jobs.views.CreateAchieve.as_view()),
                 path('updateachieve/<int:pk>', jobs.views.UpdateAchieve.as_view()),
-              path('deleteachieve/<int:id>',jobs.views.job_delete_view,name ='jobtdelete'),
+                  path('deleteachieve/<int:pk>', jobs.views.DeleteAchieve.as_view()),
 
 
 
@@ -40,7 +41,7 @@ urlpatterns = [
                   path('product/', product.views.ProductListView.as_view(), name = 'product_list_view'),
                   path('createproduct/',product.views.CreateProduct.as_view()),
                  path('updateproduct/<int:pk>', product.views.UpdateProduct.as_view()),
-                path('deleteproduct/<int:id>',product.views.product_delete_view,name ='productdelete'),
+                  path('deleteproduct/<int:pk>', product.views.DeleteProduct.as_view()),
 
 
 

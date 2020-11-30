@@ -50,9 +50,7 @@ class UpdateBlog(UpdateView):
 
 
 #############################################################deleteblog with function based ############################3###############
-def blog_delete_view(request,id):
-    mydict = {'msg':'blog Data Deleted'}
-    del_student = Blog.objects.get(id=id)
-    del_student.delete()
-    del_student = Blog.objects.all()
-    return HttpResponseRedirect("/blog/")
+class DeleteBlog(DeleteView):
+    model = Blog
+    def get_success_url(self):
+        return reverse('blog_list_view')
